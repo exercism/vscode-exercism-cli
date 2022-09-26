@@ -27,6 +27,8 @@ On the walkthrough page, follow each step, starting with installing the CLI.
 
 > You also want to press this button even if you have already installed the CLI.
 
+![Walkthrough steps](./media/start.png)
+
 #### Not yet installed
 
 In case the CLI is not found, it will attempt to open the instructions to walk you through the installation process.
