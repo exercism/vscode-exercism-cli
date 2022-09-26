@@ -61,7 +61,7 @@ In case the CLI is already configured, you can change its settings or leave it a
 
 ![Change CLI settings dialog](./media/configured.png)
 
-### Get started!
+### Get started
 
 Finally, pick a track (new, or one you've already started). You can pick any track that's available on Exercism, and this list updates automatically.
 
@@ -74,7 +74,7 @@ and pick the **Submit your solution** option.
 
 ![Submit your solution](./media/submit.png)
 
-It will attempt to automatically submit the correct files to Excercism.
+It will attempt to automatically submit the correct files to Exercism.
 
 ![Submitted your solution](./media/submitted.png)
 
@@ -90,6 +90,4 @@ None at the moment.
 
 ## Release Notes
 
-### 0.1.0
-
-Initial release of the extension
+See [CHANGELOG.md](./CHANGELOG.md)
