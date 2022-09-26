@@ -1,156 +1,156 @@
 {
-  "name": "exercism-cli",
-  "publisher": "exercism",
-  "displayName": "Exercism CLI integration",
-  "description": "Integrate the Exercism CLI with VS Code",
-  "icon": "media/favicon.png",
-  "version": "0.1.0",
-  "preview": true,
-  "author": {
-    "email": "derk-jan+git@karrenbeld.info",
-    "name": "Derk-Jan Karrenbeld",
-    "url": "https://derk-jan.com"
-  },
-  "bugs": {
-    "url": "https://github.com/exercism/vscode-exercism-cli/issues",
-    "email": "sean@contoso.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/exercism/vscode-exercism-cli.git"
-  },
-  "engines": {
-    "vscode": "^1.71.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "keywords": [
-    "exercism",
-    "cli"
-  ],
-  "license": "MIT",
-  "activationEvents": [
-    "onCommand:exercism.install",
-    "onCommand:exercism.version",
-    "onCommand:exercism.upgrade",
-    "onCommand:exercism.configure",
-    "onCommand:exercism.workspace",
-    "onCommand:exercism.startTrack",
-    "onCommand:exercism.submitSolution"
-  ],
-  "main": "./out/main.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "exercism.install",
-        "title": "Exercism CLI: Install"
-      },
-      {
-        "command": "exercism.upgrade",
-        "title": "Exercism CLI: Upgrade the Exericsm CLI"
-      },
-      {
-        "command": "exercism.version",
-        "title": "Exercism CLI: Check the installed Exericsm CLI"
-      },
-      {
-        "command": "exercism.configure",
-        "title": "Exercism CLI: Configure the Exercism CLI"
-      },
-      {
-        "command": "exercism.startTrack",
-        "title": "Exercism CLI: Pick a track and download hello-world"
-      },
-      {
-        "command": "exercism.workspace",
-        "title": "Exercism CLI: Open your Exercism workspace"
-      },
-      {
-        "command": "exercism.submitSolution",
-        "title": "Exercism CLI: Submit your solution",
-        "enablement": "resourcePath =~ /Exercism\\.*\\.*/"
-      }
-    ],
-    "walkthroughs": [
-      {
-        "id": "setup",
-        "title": "Exercism setup",
-        "description": "Setup the Exercism CLI to integrate it with VS Code",
-        "steps": [
-          {
-            "id": "install",
-            "title": "Install the CLI",
-            "description": "If you press install, this extension checks if the CLI is already present. If not, you'll be redirected to the latest instructions.\n[Install CLI](command:exercism.install)",
-            "media": {
-              "image": "media/wizard.svg",
-              "altText": ""
-            },
-            "completionEvents": [
-              "onCommand:exercism.install"
-            ]
-          },
-          {
-            "id": "configure",
-            "title": "Configure the Extension",
-            "description": "After installing the CLI, it must be configured for your Exercism user account.\n[Configure CLI](command:exercism.configure)",
-            "media": {
-              "image": "media/wizard.svg",
-              "altText": ""
-            },
-            "completionEvents": [
-              "onCommand:exercism.configure"
-            ]
-          },
-          {
-            "id": "track",
-            "title": "Pick a track",
-            "description": "Pick a track to start with and download hello-world.\n[Pick a track](command:exercism.startTrack)",
-            "media": {
-              "image": "media/wizard.svg",
-              "altText": ""
-            },
-            "completionEvents": [
-              "onCommand:exercism.startTrack"
-            ]
-          }
-        ]
-      }
-    ],
-    "configuration": {
-      "title": "Exercism CLI Settings",
-      "properties": {}
-    }
-  },
-  "scripts": {
-    "compile": "tsc -p ./",
-    "watch": "tsc -p ./ --watch",
-    "pretest": "yarn run compile && yarn run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js",
-    "vscode:prepublish": "yarn esbuild-base --minify",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "yarn esbuild-base --sourcemap",
-    "esbuild-watch": "yarn esbuild-base --sourcemap --watch",
-    "test-compile": "tsc -p ./"
-  },
-  "devDependencies": {
-    "@types/glob": "^7.2.0",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "16.11.58",
-    "@types/semver": "^7.3.12",
-    "@types/vscode": "^1.71.0",
-    "@typescript-eslint/eslint-plugin": "^5.36.2",
-    "@typescript-eslint/parser": "^5.36.2",
-    "@vscode/test-electron": "^2.1.5",
-    "esbuild": "^0.15.7",
-    "eslint": "^8.23.0",
-    "glob": "^8.0.3",
-    "mocha": "^10.0.0",
-    "typescript": "^4.8.3"
-  },
-  "dependencies": {
-    "got": "^11.8.5",
-    "semver": "^7.3.7"
-  }
+	"name": "exercism-cli",
+	"publisher": "exercism",
+	"displayName": "Exercism CLI integration",
+	"description": "Integrate the Exercism CLI with VS Code",
+	"icon": "media/favicon.png",
+	"version": "0.2.0",
+	"preview": true,
+	"author": {
+		"email": "derk-jan+git@karrenbeld.info",
+		"name": "Derk-Jan Karrenbeld",
+		"url": "https://derk-jan.com"
+	},
+	"bugs": {
+		"url": "https://github.com/exercism/vscode-exercism-cli/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/exercism/vscode-exercism-cli.git"
+	},
+	"engines": {
+		"vscode": "^1.71.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"exercism",
+		"cli"
+	],
+	"license": "MIT",
+	"activationEvents": [
+		"onCommand:exercism.install",
+		"onCommand:exercism.version",
+		"onCommand:exercism.upgrade",
+		"onCommand:exercism.configure",
+		"onCommand:exercism.workspace",
+		"onCommand:exercism.startTrack",
+		"onCommand:exercism.submitSolution"
+	],
+	"main": "./out/main.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "exercism.install",
+				"title": "Exercism CLI: Install"
+			},
+			{
+				"command": "exercism.upgrade",
+				"title": "Exercism CLI: Upgrade the Exericsm CLI"
+			},
+			{
+				"command": "exercism.version",
+				"title": "Exercism CLI: Check the installed Exericsm CLI"
+			},
+			{
+				"command": "exercism.configure",
+				"title": "Exercism CLI: Configure the Exercism CLI"
+			},
+			{
+				"command": "exercism.startTrack",
+				"title": "Exercism CLI: Pick a track and download hello-world"
+			},
+			{
+				"command": "exercism.workspace",
+				"title": "Exercism CLI: Open your Exercism workspace"
+			},
+			{
+				"command": "exercism.submitSolution",
+				"title": "Exercism CLI: Submit your solution",
+				"enablement": "resourcePath =~ /Exercism\\.*\\.*/"
+			}
+		],
+		"walkthroughs": [
+			{
+				"id": "setup",
+				"title": "Exercism setup",
+				"description": "Setup the Exercism CLI to integrate it with VS Code",
+				"steps": [
+					{
+						"id": "install",
+						"title": "Install the CLI",
+						"description": "If you press install, this extension checks if the CLI is already present. If not, you'll be redirected to the latest instructions.\n[Install CLI](command:exercism.install)",
+						"media": {
+							"image": "media/wizard.svg",
+							"altText": ""
+						},
+						"completionEvents": [
+							"onCommand:exercism.install"
+						]
+					},
+					{
+						"id": "configure",
+						"title": "Configure the Extension",
+						"description": "After installing the CLI, it must be configured for your Exercism user account.\n[Configure CLI](command:exercism.configure)",
+						"media": {
+							"image": "media/wizard.svg",
+							"altText": ""
+						},
+						"completionEvents": [
+							"onCommand:exercism.configure"
+						]
+					},
+					{
+						"id": "track",
+						"title": "Pick a track",
+						"description": "Pick a track to start with and download hello-world.\n[Pick a track](command:exercism.startTrack)",
+						"media": {
+							"image": "media/wizard.svg",
+							"altText": ""
+						},
+						"completionEvents": [
+							"onCommand:exercism.startTrack"
+						]
+					}
+				]
+			}
+		],
+		"configuration": {
+			"title": "Exercism CLI Settings",
+			"properties": {}
+		}
+	},
+	"scripts": {
+		"compile": "yarn esbuild",
+		"watch": "yarn esbuild-watch",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js",
+		"vscode:prepublish": "yarn esbuild-base --minify",
+		"esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+		"esbuild": "yarn esbuild-base --sourcemap",
+		"esbuild-watch": "yarn esbuild-base --sourcemap --watch",
+		"test-compile": "tsc -p ./"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "16.11.58",
+		"@types/semver": "^7.3.12",
+		"@types/vscode": "^1.71.0",
+		"@typescript-eslint/eslint-plugin": "^5.36.2",
+		"@typescript-eslint/parser": "^5.36.2",
+		"@vscode/test-electron": "^2.1.5",
+		"esbuild": "^0.15.7",
+		"eslint": "^8.23.0",
+		"glob": "^8.0.3",
+		"mocha": "^10.0.0",
+		"prettier": "^2.7.1",
+		"typescript": "^4.8.3"
+	},
+	"dependencies": {
+		"got": "^11.8.5",
+		"semver": "^7.3.7"
+	}
 }
