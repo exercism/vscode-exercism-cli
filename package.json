@@ -4,7 +4,7 @@
 	"displayName": "Exercism CLI integration",
 	"description": "Integrate the Exercism CLI with VS Code",
 	"icon": "media/favicon.png",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"preview": true,
 	"author": {
 		"email": "derk-jan+git@karrenbeld.info",

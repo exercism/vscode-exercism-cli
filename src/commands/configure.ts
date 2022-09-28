@@ -2,7 +2,11 @@ import * as vscode from 'vscode';
 
 import { exec, execSafe } from '../execute';
 
-export async function configureCommand() {
+export const CONFIGURED = Object.freeze(Object.create(null));
+
+export async function configureCommand(): Promise<
+	boolean | undefined | typeof CONFIGURED
+> {
 	const output = await execSafe('exercism configure');
 	const required = output.match(/Error: There is no token configured./);
 
@@ -15,7 +19,7 @@ export async function configureCommand() {
 		);
 
 		if (!result || result === 'No, leave as is') {
-			return;
+			return CONFIGURED;
 		}
 
 		if (result === 'Yes, change workspace') {
@@ -24,7 +28,7 @@ export async function configureCommand() {
 			});
 
 			if (!workspace) {
-				return;
+				return CONFIGURED;
 			}
 
 			const output = await exec(`exercism configure --workspace=${workspace}`);
@@ -34,7 +38,9 @@ export async function configureCommand() {
 				);
 			}
 
-			return vscode.commands.executeCommand('exercism.workspace');
+			return vscode.commands
+				.executeCommand('exercism.workspace')
+				.then(() => CONFIGURED);
 		}
 	}
 
@@ -77,7 +83,5 @@ export async function configureCommand() {
 		}
 	}
 
-	return vscode.workspace
-		.getConfiguration('exercism')
-		.update('configured', true);
+	return CONFIGURED;
 }

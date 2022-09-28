@@ -23,7 +23,7 @@ export async function startTrackCommand(track: string | null | undefined) {
 				cancellable: true,
 				title: 'Loading tracks',
 			},
-			async (progress, token) => {
+			async (_progress, token) => {
 				const json = await got('https://exercism.org/api/v2/tracks', {
 					headers: { accept: 'application/json' },
 				}).json();
@@ -52,31 +52,56 @@ export async function startTrackCommand(track: string | null | undefined) {
 		return;
 	}
 
-	const result = await vscode.window.withProgress<string>(
-		{
-			location: vscode.ProgressLocation.Notification,
-			cancellable: true,
-			title: `Downloading exercise hello-world for ${track}`,
-		},
+	try {
+		const result = await vscode.window.withProgress<string>(
+			{
+				location: vscode.ProgressLocation.Notification,
+				cancellable: true,
+				title: `Downloading exercise hello-world for ${track}`,
+			},
 
-		async (progress, token) => {
-			const output = await exec(
-				`exercism download --exercise hello-world --track ${track}`
-			);
+			async (_progress, token) => {
+				const output = await exec(
+					`exercism download --exercise hello-world --track ${track}`
+				);
 
-			if (token.isCancellationRequested) {
-				throw new Error('Cancelled');
+				if (token.isCancellationRequested) {
+					throw new Error('Cancelled');
+				}
+
+				return output;
 			}
+		);
 
-			return output;
+		const folderPath = result.trim();
+		const folderPathParsed = folderPath.split(`\\`).join(`/`);
+		const folderUri = vscode.Uri.file(folderPathParsed);
+
+		return vscode.commands.executeCommand('vscode.openFolder', folderUri, {
+			noRecentEntry: false,
+		});
+	} catch (error) {
+		if (error instanceof Error) {
+			if (error.message.includes('You have not joined this track')) {
+				const result = await vscode.window.showInformationMessage(
+					'You have not yet joined this track. Join the track on exercism.org first, then re-run this command.',
+					'Join track'
+				);
+
+				if (!result) {
+					return;
+				}
+
+				if (result === 'Join track') {
+					return vscode.env.openExternal(
+						vscode.Uri.parse(`https://exercism.org/tracks/${track}`)
+					);
+				}
+
+				return;
+			}
 		}
-	);
 
-	const folderPath = result.trim();
-	const folderPathParsed = folderPath.split(`\\`).join(`/`);
-	const folderUri = vscode.Uri.file(folderPathParsed);
-
-	return vscode.commands.executeCommand('vscode.openFolder', folderUri, {
-		noRecentEntry: false,
-	});
+		throw error;
+	}
 }
