@@ -1,10 +1,13 @@
 import * as semver from 'semver';
 import * as vscode from 'vscode';
 
-import { ExtensionContext } from 'vscode';
 import { exec, execSafe } from '../execute';
 
-export async function installCommand() {
+export const INSTALLED = Object.freeze(Object.create(null));
+
+export async function installCommand(): Promise<
+	boolean | undefined | typeof INSTALLED
+> {
 	const output = await execSafe('exercism version');
 	const match = output.match(/exercism version ((?:[0-9]+\.)+[0-9]+)/);
 
@@ -33,7 +36,7 @@ export async function installCommand() {
 			// version = await exec("exercism version");
 			// match = version.match(/exercism version ((?:[0-9]+\.)+[0-9]+)/);
 		}
-		return;
+		return INSTALLED;
 	}
 
 	if (parsed.major > 3) {
@@ -51,5 +54,5 @@ export async function installCommand() {
 		);
 	}
 
-	vscode.workspace.getConfiguration('exercism').update('found', true);
+	return INSTALLED;
 }
