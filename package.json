@@ -4,7 +4,7 @@
 	"displayName": "Exercism CLI integration",
 	"description": "Integrate the Exercism CLI with VS Code",
 	"icon": "media/favicon.png",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"preview": true,
 	"author": {
 		"email": "derk-jan+git@karrenbeld.info",
@@ -47,11 +47,11 @@
 			},
 			{
 				"command": "exercism.upgrade",
-				"title": "Exercism CLI: Upgrade the Exericsm CLI"
+				"title": "Exercism CLI: Upgrade the Exercism CLI"
 			},
 			{
 				"command": "exercism.version",
-				"title": "Exercism CLI: Check the installed Exericsm CLI"
+				"title": "Exercism CLI: Check the installed Exercism CLI"
 			},
 			{
 				"command": "exercism.configure",
@@ -68,7 +68,7 @@
 			{
 				"command": "exercism.submitSolution",
 				"title": "Exercism CLI: Submit your solution",
-				"enablement": "resourcePath =~ /Exercism\\.*\\.*/"
+				"enablement": "resourcePath =~ /[Ee]xercism\\.*\\.*/"
 			}
 		],
 		"walkthroughs": [
