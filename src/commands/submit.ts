@@ -12,9 +12,20 @@ export async function submitCommand() {
 	}
 
 	const parts = vscode.window.activeTextEditor?.document.uri.path.split('/');
-
+	const index = [parts.indexOf('Exercism'), parts.indexOf('exercism')]
+	
+	if (index.every((i) => i === -1)) {
+		const activePath = vscode.window.activeTextEditor?.document.uri.path
+		return vscode.window.showWarningMessage(
+			`The active document path is ${activePath}. This command only
+	  works if the path contains a folder called Exercism. At this moment it is 
+	  not yet possible to use this features with a workspace location without that
+	  folder present.`
+		);
+	}
+	
 	const exercisePath = vscode.Uri.parse(
-		parts.slice(0, parts.indexOf('Exercism') + 3).join('/')
+		parts.slice(0, index.find((i) => i !== -1) + 3).join('/')
 	);
 	const configPath = vscode.Uri.parse(
 		[exercisePath.path, '.exercism', 'config.json'].join('/')
