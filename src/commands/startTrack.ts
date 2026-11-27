@@ -24,7 +24,7 @@ export async function startTrackCommand(track: string | null | undefined) {
 				title: 'Loading tracks',
 			},
 			async (_progress, token) => {
-				const json = await got('https://exercism.org/api/v2/tracks', {
+				const json = await got('https://api.exercism.org/v2/tracks', {
 					headers: { accept: 'application/json' },
 				}).json();
 
